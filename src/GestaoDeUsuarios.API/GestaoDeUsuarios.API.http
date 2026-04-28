@@ -2,7 +2,7 @@
 @base = {{host}}/api/v1/usuarios
 
 # Substitua pelo Id retornado no POST após criar um usuário
-@usuarioId = 75EE1002-63CA-499E-80A2-B0DE4EE12799
+@usuarioId = 75ee1002-63ca-499e-80a2-b0de4ee12799
 
 
 ### [T01] POST — Criar usuário válido (espera 201 Created + envelope dados_resposta)
