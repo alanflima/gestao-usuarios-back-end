@@ -63,6 +63,24 @@ public class UsuarioAppService : IUsuarioAppService
         return _mapper.Map<IEnumerable<UsuarioResponseDto>>(usuarios);
     }
 
+    public async Task<IEnumerable<UsuarioResponseDto>> ListarInativosAsync()
+    {
+        var usuarios = await _usuarioRepository.GetAllInativosAsync();
+        return _mapper.Map<IEnumerable<UsuarioResponseDto>>(usuarios);
+    }
+
+    public async Task<IEnumerable<UsuarioResponseDto>> PesquisarPorNomeAsync(string nome)
+    {
+        var usuarios = await _usuarioRepository.GetByNameAsync(nome);
+        return _mapper.Map<IEnumerable<UsuarioResponseDto>>(usuarios);
+    }
+
+    public async Task<IEnumerable<UsuarioResponseDto>> PesquisarPorEmailAsync(string email)
+    {
+        var usuarios = await _usuarioRepository.GetByEmailAsync(email);
+        return _mapper.Map<IEnumerable<UsuarioResponseDto>>(usuarios);
+    }
+
     public async Task<UsuarioResponseDto> BuscarPorIdAsync(Guid id)
     {
         var usuario = await _usuarioRepository.GetByIdAsync(id)

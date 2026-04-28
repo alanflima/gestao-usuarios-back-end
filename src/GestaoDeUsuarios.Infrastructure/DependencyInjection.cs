@@ -14,10 +14,19 @@ public static class DependencyInjection
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
+        // Configura o DbContext com SQL Server. Scoped por padrão.
         services.AddDbContext<GestaoDeUsuariosContext>(opts => opts.UseSqlServer(connectionString));
+
+        // Registro do Repositório Genérico para operações CRUD básicas.
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+
+        // Registro do Repositório específico de Usuário para consultas personalizadas.
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+        // Registro do Unit of Work para garantir a atomicidade das transações.
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Serviço de hashing de senhas utilizando BCrypt.
         services.AddScoped<IPasswordHasherService, BcryptPasswordHasherService>();
 
         return services;

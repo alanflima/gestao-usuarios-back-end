@@ -21,4 +21,13 @@ public class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
 
     public async Task<IEnumerable<Usuario>> GetAllAtivosAsync()
         => await _dbSet.Where(u => u.Ativo).ToListAsync();
+
+    public async Task<IEnumerable<Usuario>> GetAllInativosAsync()
+        => await _dbSet.Where(u => !u.Ativo).ToListAsync();
+
+    public async Task<IEnumerable<Usuario>> GetByNameAsync(string nome)
+        => await _dbSet.Where(u => u.Nome.Contains(nome)).ToListAsync();
+
+    public async Task<IEnumerable<Usuario>> GetByEmailAsync(string email)
+        => await _dbSet.Where(u => u.Email.Contains(email)).ToListAsync();
 }

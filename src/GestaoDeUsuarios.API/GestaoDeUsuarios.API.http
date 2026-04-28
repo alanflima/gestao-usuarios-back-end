@@ -162,3 +162,21 @@ Accept: application/json
 PATCH {{base}}/00000000-0000-0000-0000-000000000001/desativar
 
 ###
+
+### [T17] GET — Listar todos os usuários inativos (espera 200 + lista)
+GET {{base}}/inativos
+Accept: application/json
+
+###
+
+### [T18] GET — Pesquisar usuários por nome (espera 200 + lista filtrada)
+GET {{base}}/pesquisa/nome?query=Alan
+Accept: application/json
+
+###
+
+### [T19] GET — Pesquisar usuários por e-mail (espera 200 + lista filtrada)
+GET {{base}}/pesquisa/email?query=alan
+Accept: application/json
+
+###

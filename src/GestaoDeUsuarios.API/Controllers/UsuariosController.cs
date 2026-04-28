@@ -29,6 +29,27 @@ public class UsuariosController : ControllerBase
         return Ok(resultado);
     }
 
+    [HttpGet("inativos")]
+    public async Task<IActionResult> ListarInativosAsync()
+    {
+        var resultado = await _usuarioAppService.ListarInativosAsync();
+        return Ok(resultado);
+    }
+
+    [HttpGet("pesquisa/nome")]
+    public async Task<IActionResult> PesquisarPorNomeAsync([FromQuery] string query)
+    {
+        var resultado = await _usuarioAppService.PesquisarPorNomeAsync(query);
+        return Ok(resultado);
+    }
+
+    [HttpGet("pesquisa/email")]
+    public async Task<IActionResult> PesquisarPorEmailAsync([FromQuery] string query)
+    {
+        var resultado = await _usuarioAppService.PesquisarPorEmailAsync(query);
+        return Ok(resultado);
+    }
+
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> BuscarPorIdAsync(Guid id)
     {

@@ -6,4 +6,7 @@ public interface IUsuarioRepository : IRepositoryBase<Usuario>
 {
     Task<bool> ExisteEmailAsync(string email, Guid? ignorarId = null);
     Task<IEnumerable<Usuario>> GetAllAtivosAsync();
+    Task<IEnumerable<Usuario>> GetAllInativosAsync();
+    Task<IEnumerable<Usuario>> GetByNameAsync(string nome);
+    Task<IEnumerable<Usuario>> GetByEmailAsync(string email);
 }
