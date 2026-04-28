@@ -1,0 +1,164 @@
+@host = http://localhost:5120
+@base = {{host}}/api/v1/usuarios
+
+# Substitua pelo Id retornado no POST após criar um usuário
+@usuarioId = 00000000-0000-0000-0000-000000000000
+
+
+### [T01] POST — Criar usuário válido (espera 201 Created + envelope dados_resposta)
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "Alan Lima",
+  "email": "alan@exemplo.com",
+  "senha": "Senha@123",
+  "cargo": "Engenheiro de Software"
+}
+
+###
+
+### [T02] POST — Criar segundo usuário (sem cargo)
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "Maria Silva",
+  "email": "maria@exemplo.com",
+  "senha": "Senha@456"
+}
+
+###
+
+### [T03] POST — E-mail duplicado (espera 400 + { "error": "..." })
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "Outro Nome",
+  "email": "alan@exemplo.com",
+  "senha": "Senha@789"
+}
+
+###
+
+### [T04] POST — Nome vazio (espera 400 + { "errors": [...] })
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "",
+  "email": "valido@exemplo.com",
+  "senha": "Senha@123"
+}
+
+###
+
+### [T05] POST — E-mail inválido (espera 400 + { "errors": [...] })
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "Nome Válido",
+  "email": "nao-e-um-email",
+  "senha": "Senha@123"
+}
+
+###
+
+### [T06] POST — Senha vazia (espera 400 + { "errors": [...] })
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "Nome Válido",
+  "email": "valido2@exemplo.com",
+  "senha": ""
+}
+
+###
+
+### [T07] GET — Listar todos os usuários ativos (espera 200 + lista)
+GET {{base}}
+Accept: application/json
+
+###
+
+### [T08] GET — Buscar usuário por Id existente (espera 200 + objeto)
+# Preencha @usuarioId com o Id retornado no T01
+GET {{base}}/{{usuarioId}}
+Accept: application/json
+
+###
+
+### [T09] GET — Buscar usuário por Id inexistente (espera 404 + { "error": "..." })
+GET {{base}}/00000000-0000-0000-0000-000000000001
+Accept: application/json
+
+###
+
+### [T10] PUT — Atualizar usuário existente (espera 200 + objeto atualizado)
+# Preencha @usuarioId com o Id retornado no T01
+PUT {{base}}/{{usuarioId}}
+Content-Type: application/json
+
+{
+  "nome": "Alan Lima Atualizado",
+  "email": "alan.atualizado@exemplo.com",
+  "cargo": "Tech Lead"
+}
+
+###
+
+### [T11] PUT — Atualizar com e-mail de outro usuário (espera 400 DomainException)
+# Preencha @usuarioId com o Id retornado no T01
+PUT {{base}}/{{usuarioId}}
+Content-Type: application/json
+
+{
+  "nome": "Alan Lima",
+  "email": "maria@exemplo.com",
+  "cargo": "Tech Lead"
+}
+
+###
+
+### [T12] PUT — Atualizar usuário inexistente (espera 404 + { "error": "..." })
+PUT {{base}}/00000000-0000-0000-0000-000000000001
+Content-Type: application/json
+
+{
+  "nome": "Fantasma",
+  "email": "fantasma@exemplo.com"
+}
+
+###
+
+### [T13] PUT — Atualizar com e-mail inválido (espera 400 + { "errors": [...] })
+# Preencha @usuarioId com o Id retornado no T01
+PUT {{base}}/{{usuarioId}}
+Content-Type: application/json
+
+{
+  "nome": "Alan Lima",
+  "email": "email-invalido"
+}
+
+###
+
+### [T14] PATCH — Desativar usuário existente (espera 204 No Content)
+# Preencha @usuarioId com o Id retornado no T01
+PATCH {{base}}/{{usuarioId}}/desativar
+
+###
+
+### [T15] GET — Listar ativos após desativar (usuário do T14 não deve aparecer)
+GET {{base}}
+Accept: application/json
+
+###
+
+### [T16] PATCH — Desativar usuário inexistente (espera 404 + { "error": "..." })
+PATCH {{base}}/00000000-0000-0000-0000-000000000001/desativar
+
+###

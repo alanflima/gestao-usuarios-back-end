@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GestaoDeUsuarios.API/GestaoDeUsuarios.API.csproj" Id="d17ccb57-f29e-4df1-98f9-5714152e3301" />
+    <Project Path="src/GestaoDeUsuarios.Application/GestaoDeUsuarios.Application.csproj" />
+    <Project Path="src/GestaoDeUsuarios.Domain/GestaoDeUsuarios.Domain.csproj" />
+    <Project Path="src/GestaoDeUsuarios.Infrastructure/GestaoDeUsuarios.Infrastructure.csproj" />
+  </Folder>
+</Solution>

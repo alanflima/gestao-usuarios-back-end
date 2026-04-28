@@ -1,0 +1,43 @@
+## [Padrões .NET]
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## [Infraestrutura e Banco Local]
+.mssql/
+*.db
+*.db-shm
+*.db-wal
+
+## [Segurança e Configurações Locais]
+appsettings.Local.json
+appsettings.Development.json
+.env
+
+## [SDD / Fábrica - Remover rastros de IA]
+.specs/
+decisoes/
+.claude/
+.gemini/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+CONSTITUTION.md
+.clinerules
+.opencode/
+SPECS.md
+design.md
+tasks.md
+pesquisa.md
+revisao.md
+bugfix.md
+requisito.md
+*.prompt.md
+
+## [Outros]
+.DS_Store
+Thumbs.db
