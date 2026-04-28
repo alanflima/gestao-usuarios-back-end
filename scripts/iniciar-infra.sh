@@ -13,7 +13,7 @@ docker start sql_server_dev
 
 echo ""
 echo "Infraestrutura pronta:"
-echo "  SQL Server : localhost:1433 (sa / Antares9\$)"
+echo "  SQL Server : localhost:1433 (sa / SenhaAdmin9!)"
 echo "  Database   : DB1677_ADA_GestaoDeUsuarios"
 echo ""
 docker ps --filter name=sql_server_dev --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
