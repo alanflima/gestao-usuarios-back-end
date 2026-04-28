@@ -20,7 +20,11 @@ public static class DependencyInjection
 
         builder.Services
             // Configura os controllers e adiciona o filtro global para padronização de respostas (ApiResponse).
-            .AddControllers(opts => opts.Filters.Add<ApiResponseFilter>())
+            .AddControllers(opts =>
+            {
+                opts.Filters.Add<ApiResponseFilter>();
+                opts.SuppressAsyncSuffixInActionNames = false;
+            })
             // Customiza as opções de serialização JSON para seguir o padrão snake_case e tratar datas.
             .AddJsonOptions(opts =>
             {

@@ -2,7 +2,7 @@
 @base = {{host}}/api/v1/usuarios
 
 # Substitua pelo Id retornado no POST após criar um usuário
-@usuarioId = 00000000-0000-0000-0000-000000000000
+@usuarioId = 75EE1002-63CA-499E-80A2-B0DE4EE12799
 
 
 ### [T01] POST — Criar usuário válido (espera 201 Created + envelope dados_resposta)
@@ -92,7 +92,7 @@ Accept: application/json
 ###
 
 ### [T09] GET — Buscar usuário por Id inexistente (espera 404 + { "error": "..." })
-GET {{base}}/00000000-0000-0000-0000-000000000001
+GET {{base}}/C8F9594D-3829-4AF0-96C3-C68EEA3F5FC0
 Accept: application/json
 
 ###
