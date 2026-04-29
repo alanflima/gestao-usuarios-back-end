@@ -5,26 +5,26 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace GestaoDeUsuarios.API.Filters;
 
-public class ApiResponseFilter : IActionFilter
+public class ApiResponseFilter : IAsyncActionFilter
 {
-    private Stopwatch _stopwatch = new();
-
-    public void OnActionExecuting(ActionExecutingContext context)
+    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        _stopwatch = Stopwatch.StartNew();
-    }
+        var stopwatch = Stopwatch.StartNew();
+        var executedContext = await next();
+        stopwatch.Stop();
 
-    public void OnActionExecuted(ActionExecutedContext context)
-    {
-        _stopwatch.Stop();
+        if (executedContext.Exception is not null)
+            return;
 
-        if (context.Result is ObjectResult objectResult)
+        if (executedContext.Result is ObjectResult objectResult)
         {
             objectResult.Value = new ApiResponse
             {
+                Sucesso = true,
                 DadosResposta = objectResult.Value,
+                Erros = [],
                 TimestampResposta = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
-                TempoDaResposta = $"{_stopwatch.ElapsedMilliseconds} ms"
+                TempoDaResposta = $"{stopwatch.ElapsedMilliseconds} ms"
             };
         }
     }

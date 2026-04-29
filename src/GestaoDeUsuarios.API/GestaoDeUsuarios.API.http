@@ -30,6 +30,70 @@ Content-Type: application/json
 
 ###
 
+### [T10] PUT — Atualizar usuário existente (espera 200 + objeto atualizado)
+# Preencha @usuarioId com o Id retornado no T01
+PUT {{base}}/{{usuarioId}}
+Content-Type: application/json
+
+{
+  "nome": "Alan Lima Atualizado",
+  "email": "alan.atualizado@exemplo.com",
+  "cargo": "Tech Lead"
+}
+
+###
+
+### [T18] GET — Pesquisar usuários por nome (espera 200 + lista filtrada)
+GET {{base}}/pesquisa/nome?query=Alan
+Accept: application/json
+
+###
+
+### [T19] GET — Pesquisar usuários por e-mail (espera 200 + lista filtrada)
+GET {{base}}/pesquisa/email?query=alan
+Accept: application/json
+
+###
+
+### [T07] GET — Listar todos os usuários ativos (espera 200 + lista)
+GET {{base}}
+Accept: application/json
+
+###
+
+### [T14] PATCH — Desativar usuário existente (espera 204 No Content)
+# Preencha @usuarioId com o Id retornado no T01
+PATCH {{base}}/{{usuarioId}}/desativar
+
+###
+
+### [T17] GET — Listar todos os usuários inativos (espera 200 + lista)
+GET {{base}}/inativos
+Accept: application/json
+
+###
+
+### [T08] GET — Buscar usuário por Id existente (espera 200 + objeto)
+# Preencha @usuarioId com o Id retornado no T01
+GET {{base}}/{{usuarioId}}
+Accept: application/json
+
+###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### [T03] POST — E-mail duplicado (espera 400 + { "error": "..." })
 POST {{base}}
 Content-Type: application/json
@@ -78,18 +142,7 @@ Content-Type: application/json
 
 ###
 
-### [T07] GET — Listar todos os usuários ativos (espera 200 + lista)
-GET {{base}}
-Accept: application/json
 
-###
-
-### [T08] GET — Buscar usuário por Id existente (espera 200 + objeto)
-# Preencha @usuarioId com o Id retornado no T01
-GET {{base}}/{{usuarioId}}
-Accept: application/json
-
-###
 
 ### [T09] GET — Buscar usuário por Id inexistente (espera 404 + { "error": "..." })
 GET {{base}}/C8F9594D-3829-4AF0-96C3-C68EEA3F5FC0
@@ -97,18 +150,7 @@ Accept: application/json
 
 ###
 
-### [T10] PUT — Atualizar usuário existente (espera 200 + objeto atualizado)
-# Preencha @usuarioId com o Id retornado no T01
-PUT {{base}}/{{usuarioId}}
-Content-Type: application/json
 
-{
-  "nome": "Alan Lima Atualizado",
-  "email": "alan.atualizado@exemplo.com",
-  "cargo": "Tech Lead"
-}
-
-###
 
 ### [T11] PUT — Atualizar com e-mail de outro usuário (espera 400 DomainException)
 # Preencha @usuarioId com o Id retornado no T01
@@ -146,37 +188,6 @@ Content-Type: application/json
 
 ###
 
-### [T14] PATCH — Desativar usuário existente (espera 204 No Content)
-# Preencha @usuarioId com o Id retornado no T01
-PATCH {{base}}/{{usuarioId}}/desativar
 
-###
 
-### [T15] GET — Listar ativos após desativar (usuário do T14 não deve aparecer)
-GET {{base}}
-Accept: application/json
 
-###
-
-### [T16] PATCH — Desativar usuário inexistente (espera 404 + { "error": "..." })
-PATCH {{base}}/00000000-0000-0000-0000-000000000001/desativar
-
-###
-
-### [T17] GET — Listar todos os usuários inativos (espera 200 + lista)
-GET {{base}}/inativos
-Accept: application/json
-
-###
-
-### [T18] GET — Pesquisar usuários por nome (espera 200 + lista filtrada)
-GET {{base}}/pesquisa/nome?query=Alan
-Accept: application/json
-
-###
-
-### [T19] GET — Pesquisar usuários por e-mail (espera 200 + lista filtrada)
-GET {{base}}/pesquisa/email?query=alan
-Accept: application/json
-
-###
