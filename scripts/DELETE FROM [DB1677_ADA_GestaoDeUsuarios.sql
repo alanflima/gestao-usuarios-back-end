@@ -1,0 +1,1 @@
+DELETE FROM [DB1677_ADA_GestaoDeUsuarios].[dbo].[Usuarios]

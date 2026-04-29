@@ -4,12 +4,6 @@
 @usuarioId = C6E74955-AE15-40D7-A981-54BB45CD91D9
 
 
-### [T07] GET — Listar todos os usuários ativos (espera 200 + lista)
-GET {{base}}
-Accept: application/json
-
-
-
 ### [T01] POST — Criar usuário válido (espera 201 Created + envelope dados_resposta)
 POST {{base}}
 Content-Type: application/json
