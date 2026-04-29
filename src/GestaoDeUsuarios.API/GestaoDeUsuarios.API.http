@@ -1,8 +1,13 @@
 @host = http://localhost:5120
 @base = {{host}}/api/v1/usuarios
 
-# Substitua pelo Id retornado no POST após criar um usuário
-@usuarioId = 75ee1002-63ca-499e-80a2-b0de4ee12799
+@usuarioId = C6E74955-AE15-40D7-A981-54BB45CD91D9
+
+
+### [T07] GET — Listar todos os usuários ativos (espera 200 + lista)
+GET {{base}}
+Accept: application/json
+
 
 
 ### [T01] POST — Criar usuário válido (espera 201 Created + envelope dados_resposta)
@@ -73,12 +78,6 @@ Accept: application/json
 
 ###
 
-### [T08] GET — Buscar usuário por Id existente (espera 200 + objeto)
-# Preencha @usuarioId com o Id retornado no T01
-GET {{base}}/{{usuarioId}}
-Accept: application/json
-
-###
 
 
 
