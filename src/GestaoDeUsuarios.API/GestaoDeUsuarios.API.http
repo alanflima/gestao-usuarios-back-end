@@ -1,7 +1,7 @@
 @host = http://localhost:5120
 @base = {{host}}/api/v1/usuarios
 
-@usuarioId = C6E74955-AE15-40D7-A981-54BB45CD91D9
+@usuarioId = 770a13ce-b73e-4a14-bfda-dcd0cdb1cfdb
 
 
 ### [T01] POST — Criar usuário válido (espera 201 Created + envelope dados_resposta)
@@ -71,20 +71,6 @@ GET {{base}}/inativos
 Accept: application/json
 
 ###
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ### [T03] POST — E-mail duplicado (espera 400 + { "error": "..." })
